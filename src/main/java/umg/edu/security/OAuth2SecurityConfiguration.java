@@ -37,8 +37,11 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Autowired
 	    protected void registerAuthentication(
 	            final AuthenticationManagerBuilder auth) throws Exception {
-	        auth.userDetailsService(userDetailsService);
-	        auth.authenticationProvider(authenticationProvider());
+	      //  auth.userDetailsService(userDetailsService);
+	      //  auth.authenticationProvider(authenticationProvider());
+			
+			auth.inMemoryAuthentication()
+			.withUser("usertest").password("12345").roles("authenticated");
 	    }
 	
   
