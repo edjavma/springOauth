@@ -21,12 +21,15 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
-		.csrf().disable()
-		.anonymous().disable()
-		.requestMatchers().antMatchers("/verify/**")
-		.and().authorizeRequests()
-		.antMatchers("/verify/**").authenticated()
-		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+		.formLogin().loginPage("/login").permitAll()
+		.and().requestMatchers().antMatchers("/login","/verify/**","/resources/**","/home/**")
+		.and()
+		.authorizeRequests()		
+			.antMatchers("/resources/**").permitAll()
+			.antMatchers("/verify/**").authenticated()
+			.antMatchers("/home/**").authenticated()
+			.and().csrf().disable();
+		
 	}
 
 }

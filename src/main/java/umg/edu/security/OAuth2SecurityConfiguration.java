@@ -39,6 +39,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	            final AuthenticationManagerBuilder auth) throws Exception {
 	        auth.userDetailsService(userDetailsService);
 	        auth.authenticationProvider(authenticationProvider());
+	        
 	    }
 	
   
@@ -46,6 +47,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	      public void configure(WebSecurity web) throws Exception {			
 	        web.ignoring()
 	          .antMatchers(HttpMethod.OPTIONS);
+	        
 	      }
 
     @Override
